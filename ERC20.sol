@@ -12,3 +12,17 @@ interface IERC20 {
     event Transfer(address indexed from,address indexed to,uint256 value);
     event Approval(address indexed owner,address indexed spender,uint256 value);
 }
+
+abstract contract Block is IERC20{
+    string public name="Neeraj"; //token name
+    string public symbol="NGS"; //token symbol
+    uint public decimal=0;
+    address public founder; //address who is deploying the token
+    mapping (address => uint) public balance; //balance of each address
+
+    mapping(address => mapping(address => bool)) allowed;
+
+    
+
+
+}
