@@ -30,7 +30,20 @@ abstract contract Block is IERC20{
         balance[founder] = totalSupply; //adding all supply to owner or founder
     }
 
-    
+    function balanceOf(address account) external view returns(uint256){
+        return balance[account]; //balance of tokens of an account
+    }
+
+    function transfer(address recipient,uint256 amount) external returns(bool){
+        require(amount>0,"Amount Has to be Greater Than 0");
+        require(balance[msg.sender]>0,"Insufficnet Funds or No Balance");
+        balance[msg.sender]-=amount;
+        balance[recipient]+=amount;
+
+        emit Transfer(msg.sender,recipient,amount);
+    }
+
+
 
 
 }
