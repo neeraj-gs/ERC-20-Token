@@ -22,6 +22,8 @@ ERC-20
     }
 //If standards are not followed then most of the apllications or wallets will not be able tot detect the token correctly
 
+    Fungible Token - Exchange possible if the value is the same [] -- All the tokens are equivalent
+    
 
 
 
