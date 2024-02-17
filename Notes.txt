@@ -1,0 +1,32 @@
+ECR-20 Token
+    Diffrent Standards have diffrent Tokens
+    Tokens are used in most of the fields in Blockchains
+
+Crypto -> Coins or Tokenns
+    Coins - A Native Currency for each of the blockchain,
+    Tokens - ssets that allow information and value to be transferred, stored, and verified in an efficient and secure manner.Can be created by anyone
+        represents assets or specific use and resides on the blockchain
+        Based on Supply and Demand the price of coins and tokens are decided.
+
+    
+ERC-20
+    Ethereum Requesr for Comments - form of proposal and its purpose is to define standards and practices.
+    It is a token standard, that is used in financial transactions
+        Standardize how a token contract ahs to be deinfed, how interactions happen and how contract interacts with each other
+        Standard interface is used by eallets, exchanges and interact with tokens 
+    ERC 20 must implement wiyhout an alternative 6 functions and 2 events 
+
+    interface IERC20{
+        //a standard is given , we can add more functions 
+
+    }
+//If standards are not followed then most of the apllications or wallets will not be able tot detect the token correctly
+
+
+
+
+
+
+
+
+
