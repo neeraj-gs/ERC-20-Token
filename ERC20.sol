@@ -36,7 +36,7 @@ abstract contract Block is IERC20{
 
     function transfer(address recipient,uint256 amount) external returns(bool){
         require(amount>0,"Amount Has to be Greater Than 0");
-        require(balance[msg.sender]>amount,"Insufficnet Funds or No Balance");
+        require(balance[msg.sender]>=amount,"Insufficnet Funds or No Balance");
         balance[msg.sender]-=amount;
         balance[recipient]+=amount;
 
@@ -53,8 +53,22 @@ abstract contract Block is IERC20{
     function approve(address spender,uint256 amount) external returns(bool){
         //give the approval of for hte allowance
         require(amount>0,"Amount Has to be Greater than 0");
-        require(balance[msg.sender]>amount,"Insufficient Funds");
+        require(balance[msg.sender]>=amount,"Insufficient Funds");
         allowed[msg.sender][spender] = amount; //here we give or allow spender to take our authority
+        emit Approval(msg.sender,spender,amount);
+        return true;
+    }
+
+
+    //this function is used to cashout the tokens adter hte approval from the owner
+    function transferFrom(address sender,address recipient,uint256 amount) external returns(bool){
+        //function to take tokens after teh approval;
+        require(allowed[sender][recipient]>=amount,"Recipeitn Does not Have Authority to spend sender tokens");
+        require(balance[sender]>=amount,"Insufficient Funds");
+        balance[sender]-=amount; //here we give or allow spender to take
+        balance[recipient]+=amount;
+
+        emit Transfer(msg.sender,recipient,amount)
         return true;
     }
 
