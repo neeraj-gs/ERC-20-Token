@@ -20,7 +20,15 @@ abstract contract Block is IERC20{
     address public founder; //address who is deploying the token
     mapping (address => uint) public balance; //balance of each address
 
+    uint public totalSupply; //getter function is cretead for public varaibles
+
     mapping(address => mapping(address => bool)) allowed;
+
+    constructor(){
+        totalSupply = 1000;
+        founder=msg.sender;
+        balance[founder] = totalSupply; //adding all supply to owner or founder
+    }
 
     
 
