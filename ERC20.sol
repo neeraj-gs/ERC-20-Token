@@ -22,7 +22,7 @@ abstract contract Block is IERC20{
 
     uint public totalSupply; //getter function is cretead for public varaibles
 
-    mapping(address => mapping(address => bool)) allowed;
+    mapping(address => mapping(address => uint)) allowed;
 
     constructor(){
         totalSupply = 1000;
@@ -36,11 +36,26 @@ abstract contract Block is IERC20{
 
     function transfer(address recipient,uint256 amount) external returns(bool){
         require(amount>0,"Amount Has to be Greater Than 0");
-        require(balance[msg.sender]>0,"Insufficnet Funds or No Balance");
+        require(balance[msg.sender]>amount,"Insufficnet Funds or No Balance");
         balance[msg.sender]-=amount;
         balance[recipient]+=amount;
 
         emit Transfer(msg.sender,recipient,amount);
+        return true;
+    }
+
+    function allowance(address owner,address spender) external view returns(uint256){
+        //function to give authority to use my tokens
+        return allowed[owner][spender]; //Number of tokens the owner has allowed to the spender
+        //Tokens authority is gien to the spender
+    }
+
+    function approve(address spender,uint256 amount) external returns(bool){
+        //give the approval of for hte allowance
+        require(amount>0,"Amount Has to be Greater than 0");
+        require(balance[msg.sender]>amount,"Insufficient Funds");
+        allowed[msg.sender][spender] = amount; //here we give or allow spender to take our authority
+        return true;
     }
 
 
