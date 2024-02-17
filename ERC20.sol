@@ -62,6 +62,7 @@ abstract contract Block is IERC20{
 
     //this function is used to cashout the tokens adter hte approval from the owner
     function transferFrom(address sender,address recipient,uint256 amount) external returns(bool){
+        //Get the TOKens into the allowed address
         //function to take tokens after teh approval;
         require(allowed[sender][recipient]>=amount,"Recipeitn Does not Have Authority to spend sender tokens");
         require(balance[sender]>=amount,"Insufficient Funds");
@@ -71,8 +72,4 @@ abstract contract Block is IERC20{
         emit Transfer(msg.sender,recipient,amount)
         return true;
     }
-
-
-
-
 }
